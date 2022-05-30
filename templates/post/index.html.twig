@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recettes
+{% endblock %}
+
+{% block body %}
+	<div class="container posts">
+		{% for post in posts %}
+			<div class="card">
+				<img src="{{ post.image }}">
+				<div class="card-body">
+					<div class="card-author">
+						<i class="fa-solid fa-user"></i>
+						{{ post.author.username }}
+						• Le
+						{{ post.createdAt|date("d/m/Y") }}
+						•
+						{% for category in post.categories %}
+							{{ category.label }}
+						{% endfor %}
+					</div>
+					<div class="card-title">
+						{{ post.title }}
+					</div>
+					<p class="card-content">
+						{{ post.content }}
+					</p>
+					<a href="{{ path("post_detail", {id: post.id}) }}" class="btn btn-primary">Voir plus</a>
+					<hr class="divider medium">
+					<div class="card-comments">
+						<i class="fa-solid fa-comment"></i>
+						{{ post.comments|length }}
+						commentaires
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

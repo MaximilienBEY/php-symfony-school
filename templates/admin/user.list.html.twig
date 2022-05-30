@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+
+	<div class="container admin users">
+		<h4>Utilisateurs</h4>
+		<table>
+			<thead>
+				<tr>
+					<th class="id">ID</th>
+					<th class="username">Username</th>
+					<th class="email">Email</th>
+					<th class="role">Role</th>
+					<th class="actions">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td class="id">{{ user.id }}</td>
+						<td class="username">{{ user.username }}</td>
+						<td class="email">{{ user.email }}</td>
+						<td class="role">{{ user.Roles|first }}</td>
+						<td class="actions">
+							<div>
+								<a class="btn btn-brown" href="{{ path("admin_user_edit", {id: user.id}) }}">Modifier</a>
+								<a class="btn btn-danger" href="{{ path("admin_user_delete", {id: user.id}) }}">Supprimer</a>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

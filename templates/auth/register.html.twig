@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block body %}
+
+	<div class="container register">
+		<h4>Inscription</h4>
+		<p>Vous avez un compte ?
+			<a href="{{ path("login") }}">Connectez vous</a>
+		</p>
+		{{ form_start(form) }}
+		{{ form_row(form.username) }}
+		{{ form_row(form.email) }}
+		{{ form_row(form.plainPassword, {
+                label: 'Password'
+            }) }}
+		<button type="submit" class="btn btn-primary">Envoyer</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

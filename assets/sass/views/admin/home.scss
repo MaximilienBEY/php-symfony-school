@@ -1,0 +1,56 @@
+.admin {
+    h4 {
+        text-align: center;
+        font-size: width(40);
+        font-weight: 300;
+        color: $primary;
+        margin: 0;
+    }
+    .buttons {
+        display: flex;
+        justify-content: center;
+        column-gap: width(24);
+        a {
+            width: auto;
+        }
+    }
+    &.home {
+        display: flex;
+        flex-direction: column;
+        row-gap: width(24);
+
+        table, th, td {
+            border: width(1) solid $primary;
+            border-collapse: collapse;
+            font-size: width(20);
+        }
+        th, td {
+            padding: width(4) width(4);
+        }
+        table {
+            th.id, td.id {
+                width: 5%;
+                text-align: center;
+            }
+            th.title, td.title {
+                width: 35%;
+            }
+            th.categories, td.categories {
+                width: 30%;
+            }
+            th.actions, td.actions {
+                width: 30%;
+            } 
+            td.actions {
+                div {
+                    display: flex;
+                    justify-content: center;
+                    column-gap: width(8);
+                    a {
+                        width: auto;
+                    }
+                }
+            }
+        }
+    }
+}

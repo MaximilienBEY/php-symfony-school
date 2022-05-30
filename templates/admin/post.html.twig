@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter/editer recette
+{% endblock %}
+
+{% block body %}
+
+	<div class="container admin edit">
+		<h4>Recette</h4>
+		{{ form_start(form) }}
+		{{ form_row(form.title) }}
+		{{ form_row(form.content) }}
+		{{ form_row(form.image) }}
+
+		{% if is_granted('ROLE_ADMIN') %}
+			{{ form_row(form.author) }}
+		{% elseif is_granted('ROLE_AUTHOR') %}
+			{% do form.author.setRendered() %}
+		{% endif %}
+		{{ form_row(form.categories) }}
+		<button type="submit" class="btn btn-primary">Envoyer</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

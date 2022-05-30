@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recette | {{ post.title }}
+{% endblock %}
+
+{% block body %}
+	<div class="container post">
+		<div class="post-container">
+			<div class="post-author">
+				<i class="fa-solid fa-user"></i>
+				{{ post.author.username }}
+				• Le
+				{{ post.createdAt|date("d/m/Y") }}
+				•
+				{% for category in post.categories %}
+					{{ category.label }}
+				{% endfor %}
+			</div>
+			<div class="post-title">
+				{{ post.title }}
+			</div>
+			<img src="{{ post.image }}">
+			<p class="post-content">
+				{{ post.content }}
+			</p>
+			<hr class="divider medium">
+			<div class="post-comments">
+				<i class="fa-solid fa-comment"></i>
+				{{ post.comments|length }}
+				commentaires
+				<div class="comments">
+					{% for comment in post.comments %}
+						<div class="comment">
+							<div class="comment-title">
+								Rédigé par
+								{% if comment.author %}
+									{{ comment.author.username }}, le
+								{% else %}
+									{{ comment.username }}, le
+								{% endif %}
+								{{ comment.createdAt|date("d/m/Y H:i") }}
+								{% if 
+									is_granted('ROLE_ADMIN') or 
+									(is_granted('ROLE_AUTHOR') and app.user.id == post.author.id) or
+									(comment.author and app.user and (comment.author.id == app.user.id))
+								%}
+									<a href="{{ path("comment_delete", {id: comment.id}) }}">Supprimer</a>
+								{% endif %}
+							</div>
+							<div class="comment-body">
+								{{ comment.content }}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+			<div class="new-comment">
+				<h6>Laisser un commentaire</h6>
+
+
+				{{ form_start(form) }}
+				{% if is_granted('ROLE_USER') %}
+					{% do form.username.setRendered() %}
+				{% else %}
+					{{ form_row(form.username, {attr: {required: true}}) }}
+				{% endif %}
+				{{ form_row(form.content) }}
+
+				<button type="submit" class="btn btn-primary">Envoyer</button>
+				{{ form_end(form) }}
+			</div>
+		<div class="last-posts">
+			<h6>Recettes récentes</h6>
+			<div class="grid">
+				{% for post in last_posts %}
+					<div class="card">
+						<img src="{{ post.image }}">
+						<div class="card-body">
+							<div class="card-title">
+								{{ post.title }}
+							</div>
+							<p class="card-content">
+								{{ post.content }}
+							</p>
+							<a href="{{ path("post_detail", {id: post.id}) }}" class="btn btn-primary">Voir plus</a>
+							<hr class="divider medium">
+							<div class="card-comments">
+								<i class="fa-solid fa-comment"></i>
+								{{ post.comments|length }}
+								commentaires
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

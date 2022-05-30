@@ -1,0 +1,32 @@
+.contact {
+    h4 {
+        text-align: center;
+        font-size: width(40);
+        font-weight: 300;
+        color: $primary;
+        margin: 0;
+    }
+    form {
+        margin-top: width(32);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: width(24);
+        & > div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            row-gap: width(8);
+            label {
+                color: $primary;
+            }
+        }
+        textarea {
+            resize: none;
+            height: width(128)
+        }
+        button {
+            width: auto;
+        }
+    }
+}

@@ -1,0 +1,6 @@
+@use "sass:math";
+
+@function width($pixels) {
+    $width: math.div($pixels, 1920) * 100;
+    @return $width + vw
+}

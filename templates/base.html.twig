@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('main') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('main') }}
+		{% endblock %}
+	</head>
+	<body>
+		<ul class="navbar">
+			<li>
+				<a href="/">Accueil</a>
+			</li>
+			<li>
+				<a href="{{ path("posts") }}">Recettes</a>
+			</li>
+			<li>
+				<a href="{{ path("about") }}">A propos</a>
+			</li>
+			<li>
+				<a href="{{ path("contact") }}">Contact</a>
+			</li>
+			{% if is_granted('ROLE_USER') %}
+				<li>
+					<a href="{{ path("logout") }}">Déconnexion</a>
+				</li>
+			{% else %}
+				<li>
+					<a href="{{ path("login") }}">Connexion</a>
+				</li>
+			{% endif %}
+			{% if is_granted('ROLE_ADMIN') %}
+				<li>
+					<a href="{{ path("admin") }}">Administration</a>
+				</li>
+			{% elseif is_granted('ROLE_AUTHOR') %}
+				<li>
+					<a href="{{ path("author") }}">Auteur</a>
+				</li>
+			{% endif %}
+		</ul>
+		<div class="header">
+			<img src="/assets/images/logo.png"/>
+			<h1>Aventures gustatives</h1>
+		</div>
+		<hr class="divider medium header">
+		{# {{ app.flashes()|length }} #}
+		<div class="alerts">
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success">
+					{{ message }}
+				</div>
+			{% endfor %}
+			{% for message in app.flashes('danger') %}
+				<div class="alert alert-danger">
+					{{ message }}
+				</div>
+			{% endfor %}
+		</div>
+		{% block body %}{% endblock %}
+		<div class="footer">
+			<div class="copyright">
+				© 2022 par AVENTURES GUSTATIVES
+			</div>
+			<div class="socials">
+				<i class="fa-brands fa-instagram"></i>
+				<i class="fa-brands fa-facebook"></i>
+				<i class="fa-brands fa-pinterest"></i>
+				<i class="fa-brands fa-youtube"></i>
+			</div>
+		</div>
+	</body>
+</html>

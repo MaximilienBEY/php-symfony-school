@@ -1,0 +1,32 @@
+.about {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: width(64);
+    div {
+        position: relative;
+        &.image {
+            img {
+                width: 100%;
+            }
+        }
+        &.content {
+            h4 {
+                position: relative;
+                font-family: 'Didot', sans-serif;
+                font-style: italic;
+                font-size: width(24);
+                margin: 0;
+                padding: 0 0 width(32) 0;
+                &::before {
+                    position: absolute;
+                    content: "";
+                    height: width(1);
+                    width: 15%;
+                    left: 0;
+                    bottom: width(16);
+                    background: $body;
+                }
+            }
+        }
+    }
+}

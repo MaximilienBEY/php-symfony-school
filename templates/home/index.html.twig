@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+	<div class="home">
+		<div class="container">
+			<div class="presentation">
+				<h2>Bienvenue sur Aventures Gustatives !</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, nulla. Itaque amet doloremque fugit tenetur porro omnis. Accusamus nam, doloribus exercitationem ipsum fugiat repellat quam ut totam rerum non suscipit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus alias, beatae maiores vero nihil explicabo! Natus rem accusantium ipsam facere sunt iure asperiores. Accusantium ex modi temporibus, eius reiciendis rerum.</p>
+			</div>
+			<div class="grid">
+				<div class="introduction">
+					<h4>Bonjour</h4>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium ipsam, iusto sapiente, sunt necessitatibus laudantium facere natus esse tempore culpa quasi officia.</p>
+					<hr class="divider body">
+					<div class="socials">
+						<i class="fa-brands fa-instagram"></i>
+						<i class="fa-brands fa-facebook"></i>
+						<i class="fa-brands fa-pinterest"></i>
+						<i class="fa-brands fa-youtube"></i>
+					</div>
+					<div class="separator">
+						<hr class="divider brown">
+						<i class="fa-solid fa-star"></i>
+					</div>
+					<h3>Elu meilleur blog culinaire</h3>
+					<hr class="divider brown">
+					<h4>Ma dernière recette</h4>
+					{% if posts|first%}
+						<div class="recipe">
+							<img src="{{ (posts|first).image }}">
+							<h6>{{ (posts|first).title }}</h6>
+							<a class="btn btn-primary" href="{{ path("post_detail", {id: (posts|first).id}) }}">Voir la recette</a>
+						</div>
+					{% endif %}
+				</div>
+				<div class="posts">
+					{% for post in posts %}
+						<div class="card">
+							<img src="{{ post.image }}">
+							<div class="card-body">
+								<div class="card-author">
+									<i class="fa-solid fa-user"></i>
+									{{ post.author.username }}
+									• Le
+									{{ post.createdAt|date("d/m/Y") }}
+									•
+									{% for category in post.categories %}
+										{{ category.label }}
+									{% endfor %}
+								</div>
+								<div class="card-title">
+									{{ post.title }}
+								</div>
+								<p class="card-content">
+									{{ post.content }}
+								</p>
+								<a href="{{ path("post_detail", {id: post.id}) }}" class="btn btn-primary">Voir plus</a>
+                                <hr class="divider medium">
+                                <div class="card-comments">
+                                    <i class="fa-solid fa-comment"></i>
+                                    {{ post.comments|length }} commentaires
+                                </div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

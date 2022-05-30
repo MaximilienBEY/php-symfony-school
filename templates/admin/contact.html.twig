@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demandes
+{% endblock %}
+
+{% block body %}
+
+	<div class="container admin contact">
+		<h4>Liste des messages reçus</h4>
+		<table>
+			<thead>
+				<tr>
+					<th class="id">ID</th>
+					<th class="email">Email</th>
+					<th class="content">Contenu</th>
+					<th class="actions">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for contact in contacts %}
+					<tr>
+						<td class="id">{{ contact.id }}</td>
+						<td class="email">{{ contact.email }}</td>
+						<td class="content">{{ contact.content }}</td>
+						<td class="actions">
+							<div>
+								<a class="btn btn-brown" href="mailto:{{ contact.email }}">Répondre</a>
+								<a class="btn btn-danger" href="{{ path("admin_contact_delete", {id: contact.id}) }}">Supprimer</a>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

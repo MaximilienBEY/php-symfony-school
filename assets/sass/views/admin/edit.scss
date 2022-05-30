@@ -1,0 +1,27 @@
+.admin.edit {
+    form {
+        margin-top: width(32);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: width(24);
+        & > div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            row-gap: width(8);
+            ul {
+                display: none;
+            }
+            label {
+                color: $primary;
+            }
+        }
+        textarea {
+            height: width(240);
+        }
+        button {
+            width: auto;
+        }
+    }
+}

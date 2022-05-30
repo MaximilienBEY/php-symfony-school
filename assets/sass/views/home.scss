@@ -1,0 +1,85 @@
+.home {
+    .presentation {
+        h2 {
+            font-size: width(32);
+            color: $primary;
+            font-weight: 300;
+            text-align: center;
+            margin: 0;
+        }
+        p {
+            margin: width(40) 0 0 0;
+        }
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: 4fr 6fr;
+        margin-top: width(32);
+        column-gap: width(48);
+        .introduction {
+            position: relative;
+            h4 {
+                position: relative;
+                font-family: 'Didot', sans-serif;
+                font-style: italic;
+                font-size: width(24);
+                margin: 0;
+                padding: 0 0 width(32) 0;
+                &::before {
+                    position: absolute;
+                    content: "";
+                    height: width(1);
+                    width: 15%;
+                    left: 0;
+                    bottom: width(16);
+                    background: $body;
+                }
+            }
+            .socials {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 width(4);
+                font-size: width(32);
+            }
+            hr.brown {
+                margin: width(48) 0;
+            }
+            .separator {
+                position: relative;
+                i {
+                    color: $brown;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-50%);
+                    background: #ffffff;
+                    padding: width(8)
+                }
+            }
+            h3 {
+                text-align: center;
+                font-size: width(48);
+                font-family: 'Didot', sans-serif;
+                font-style: italic;
+                line-height: 1.25;
+            }
+            .recipe {
+                h6 {
+                    margin: 0;
+                    font-size: width(20);
+                    font-weight: 300;
+                    padding: width(16) 0;
+                }
+                img {
+                    width: 100%;
+                }
+            }
+        }
+        .posts {
+            display: flex;
+            flex-direction: column;
+            row-gap: width(24);
+        }
+    }
+}

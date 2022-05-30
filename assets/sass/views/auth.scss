@@ -1,0 +1,40 @@
+.login, .register {
+    h4 {
+        text-align: center;
+        font-size: width(40);
+        font-weight: 300;
+        color: $primary;
+        margin: 0;
+    }
+    p {
+        margin: width(24) 0 0;
+        text-align: center;
+        color: $bodySecondary;
+        a {
+            text-decoration: underline;
+            color: $primary;
+        }
+    }
+    form {
+        margin-top: width(32);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: width(24);
+        & > div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            row-gap: width(8);
+            ul {
+                display: none;
+            }
+            label {
+                color: $primary;
+            }
+        }
+        button {
+            width: auto;
+        }
+    }
+}

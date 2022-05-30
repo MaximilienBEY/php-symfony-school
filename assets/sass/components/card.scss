@@ -1,0 +1,35 @@
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: width(1) solid $mediumBackground;
+    img {
+        width: 100%;
+    }
+    .card-body {
+        padding: width(8);
+        .card-author {
+            color: $primary;
+            font-size: width(18);
+            padding: width(24) 0;
+        }
+        .card-title {
+            padding-top: width(8);
+            font-size: width(24);
+        }
+        .card-content {
+            margin: width(12) 0;
+            width: width(553.23);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        hr {
+            margin: width(12) 0;
+        }
+        .card-comments {
+            font-size: width(18);
+            padding: width(24) 0;
+        }
+    }
+}

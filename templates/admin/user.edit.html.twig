@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur
+{% endblock %}
+
+{% block body %}
+
+	<div class="container admin edit">
+		<h4>Administration</h4>
+		{{ form_start(form) }}
+		{{ form_row(form.username) }}
+		{{ form_row(form.email) }}
+		{{ form_row(form.roles) }}
+		<button type="submit" class="btn btn-primary">Envoyer</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

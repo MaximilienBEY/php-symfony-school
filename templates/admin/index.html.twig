@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{% if is_granted('ROLE_ADMIN') %}
+		Administration
+	{% else %}
+		Auteur
+	{% endif %}
+{% endblock %}
+
+{% block body %}
+
+	<div class="container admin home">
+		{% if is_granted('ROLE_ADMIN') %}
+			<h4>Administration</h4>
+		{% else %}
+			<h4>Auteur</h4>
+		{% endif %}
+		<div class="buttons">
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path("admin_post_create") }}" class="btn btn-primary">Ajouter un article</a>
+				<a href="{{ path("admin_user_list") }}" class="btn btn-primary">Utilisateurs</a>
+				<a href="{{ path("admin_contact_list") }}" class="btn btn-primary">Contact</a>
+			{% elseif is_granted('ROLE_AUTHOR') %}
+				<a href="{{ path("author_post_create") }}" class="btn btn-primary">Ajouter un article</a>
+			{% endif %}
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th class="id">ID</th>
+					<th class="title">Titre</th>
+					<th class="categories">Catégories</th>
+					<th class="actions">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for post in posts %}
+					<tr>
+						<td class="id">{{ post.id }}</td>
+						<td class="title">{{ post.title }}</td>
+						<td class="categories">
+							{% for category in post.categories%}
+								{{ category.label }}
+								{% if not loop.last %},
+								{% endif %}
+							{% endfor %}
+						</td>
+						<td class="actions">
+							<div>
+								{% if is_granted("ROLE_ADMIN") %}
+									<a class="btn btn-brown" href="{{ path("admin_post_edit", {id: post.id}) }}">Modifier</a>
+									<a class="btn btn-danger" href="{{ path("admin_post_delete", {id: post.id}) }}">Supprimer</a>
+								{% else %}
+									<a class="btn btn-brown" href="{{ path("author_post_edit", {id: post.id}) }}">Modifier</a>
+									<a class="btn btn-danger" href="{{ path("author_post_delete", {id: post.id}) }}">Supprimer</a>
+								{% endif %}
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

@@ -1,0 +1,105 @@
+body {
+    font-family: "Metropolis", sans-serif;
+    margin: 0;
+    padding: 0;
+    color: $body;
+}
+* {
+    box-sizing: border-box;
+}
+
+p {
+    padding: 0;
+    font-size: width(20);
+    text-align: justify;
+    line-height: 1.25;
+}
+
+hr.divider {
+    position: relative;
+    border: none;
+    height: width(1);
+    &.medium {
+        background: $mediumBackground;
+    }
+    &.body {
+        background: $body;
+    }
+    &.brown {
+        background: $brown;
+    }
+}
+
+.container {
+    width: width(1000);
+    margin: 0 auto;
+}
+
+.btn {
+    color: inherit;
+    text-decoration: none;
+    padding: width(16) width(24);
+    font-size: width(20);
+    width: 100%;
+    display: block;
+    text-align: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all .3s;
+    border-radius: width(8);
+    &.btn-primary {
+        background: $primary;
+        color: #ffffff;
+        &:hover {
+            background: darken($primary, 5);
+        }
+    }
+    &.btn-brown {
+        background: $brown;
+        color: #ffffff;
+        &:hover {
+            background: darken($brown, 5);
+        }
+    }
+    &.btn-danger {
+        background: $danger;
+        color: #ffffff;
+        &:hover {
+            background: darken($danger, 5);
+        }
+    }
+}
+.alerts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: width(8);
+    .alert {
+        color: #ffffff;
+        padding: width(24);
+        opacity: .75;
+        &.alert-success {
+            background: $primary;
+        }
+        &.alert-danger {
+            background: $danger;
+        }
+        &:last-child {
+            margin-bottom: width(32);
+        }
+    }
+}
+
+input, textarea, select {
+    resize: none;
+    padding: width(8);
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    outline: width(1) solid $body;
+    border: none;
+    border-radius: width(8);
+    &:focus {
+        outline: width(2) solid $primary;
+    }
+}
